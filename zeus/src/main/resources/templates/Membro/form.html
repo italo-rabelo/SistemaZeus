@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Membro</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #6DC5D1;
+            min-height: 100vh;
+            padding: 30px;
+        }
+        .dashboard-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2 th:text="${membro.id == null} ? 'Cadastro de Membro' : 'Editar Membro'"></h2>
+    </div>
+
+    <form th:action="@{/membros/salvar}" th:object="${membro}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label th:for="*{nomeCompleto}">Nome Completo</label>
+            <input type="text" class="form-control" th:field="*{nomeCompleto}" required>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{dataNascimento}">Data de Nascimento</label>
+            <input type="date" class="form-control" th:field="*{dataNascimento}" required>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{email}">E-mail Institucional</label>
+            <input type="email" class="form-control" th:field="*{email}" placeholder="membro@compjunior.com" required>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{cargo}">Cargo</label>
+            <input type="text" class="form-control" th:field="*{cargo}" required>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{telefone}">Telefone</label>
+            <input type="tel" class="form-control" th:field="*{telefone}" placeholder="(xx) xxxxx-xxxx" required>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{genero}">Gênero</label>
+            <select class="form-control" th:field="*{genero}" required>
+                <option value="" disabled>Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+                <option value="Prefiro não dizer">Prefiro não dizer</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{dataIngresso}">Data de Ingresso</label>
+            <input type="date" class="form-control" th:field="*{dataIngresso}" required>
+        </div>
+
+        <div class="form-group">
+            <label th:for="*{habilidades}">Habilidades</label>
+            <textarea class="form-control" rows="3" th:field="*{habilidades}" required></textarea>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/membros" class="btn btn-secondary"
+               onclick="return confirm('Deseja cancelar? Os dados não serão salvos.')">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

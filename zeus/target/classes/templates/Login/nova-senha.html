@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Redefinir Senha</title></head>
+<body>
+<h1>Defina sua nova senha</h1>
+<form th:action="@{/novaSenha}" method="post">
+    <input type="hidden" name="email" th:value="${email}" />
+    <label>Nova senha:</label>
+    <input type="password" name="senha" required minlength="6" />
+    <label>Confirmar senha:</label>
+    <input type="password" name="confirmarSenha" required minlength="6" />
+    <button type="submit">Redefinir</button>
+</form>
+<p th:if="${erro}" th:text="${erro}" style="color:red"></p>
+</body>
+</html>

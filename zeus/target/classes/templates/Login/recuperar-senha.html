@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Recuperar minha senha</title></head>
+<body>
+<h1>Recuperar minha senha</h1>
+<form th:action="@{/enviarCodigo}" method="post">
+    <label>E-mail:</label>
+    <input type="email" name="email" required />
+    <button type="submit">Enviar codigo</button>
+</form>
+<p th:if="${erro}" th:text="${erro}" style="color:red"></p>
+</body>
+</html>

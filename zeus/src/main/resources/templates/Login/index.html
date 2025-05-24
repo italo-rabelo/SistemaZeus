@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #6DC5D1;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .dashboard-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border-radius: 10px;
+        }
+
+        .logout-btn {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2>Bem-vindo ao à dashboard do Zeus</h2>
+        <a href="/sair" class="btn btn-danger logout-btn">Sair</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card p-3">
+                <h5>Orçamentos</h5>
+                <p>Crie, altere e exclua orçamentos de projetos.</p>
+                <a href="/orcamentos" class="btn btn-primary">Acessar orçamentos</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card p-3">
+                <h5>Membros</h5>
+                <p>Gerencie os membros da Comp Júnior (admin).</p>
+                <a href="/membros" class="btn btn-primary">Gerenciar membros</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Orçamento</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #6DC5D1;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .dashboard-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 10px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2>Cadastro de Orçamento</h2>
+    </div>
+
+    <form th:action="@{/orcamentos/salvar}" th:object="${orcamento}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{dataCriacao}" />
+        <div class="form-group">
+            <label>Número do Orçamento</label>
+            <input type="text" th:field="*{numeroOrcamento}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Descrição do Projeto</label>
+            <input type="text" th:field="*{descricaoProjeto}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Cliente</label>
+            <input type="text" th:field="*{cliente}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Responsável</label>
+            <select th:field="*{responsavel}" class="form-control" required>
+                <option th:each="usuario : ${usuarios}"
+                        th:value="${usuario.id}"
+                        th:text="${usuario.nome}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Valor Estimado</label>
+            <input type="number" step="0.01" th:field="*{valorEstimado}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Custos Previstos</label>
+            <input type="number" step="0.01" th:field="*{custosPrevistos}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status" th:field="*{status}" required>
+                <option th:each="s : ${statusOrcamento}"
+                        th:value="${s}"
+                        th:text="${s}"></option>
+            </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a th:href="@{/orcamentos}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
