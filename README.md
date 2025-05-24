@@ -75,5 +75,180 @@ Navegue até a pasta raíz do projeto (src/) e no terminal, execute o comando ``
 
 4. Acesse no navegador ```http://localhost:8080/login```
 
+## 🔗 Testando os Endpoints
+
+Você pode testar os endpoints utilizando ferramentas como **Postman**, **Insomnia** ou diretamente pelo navegador (para métodos GET).
+
+---
+
+## 🔑 Endpoints de Login e Autenticação
+
+| Método | Endpoint                | Descrição                              |
+|--------|--------------------------|-----------------------------------------|
+| GET    | `/login`                 | Tela de login                          |
+| POST   | `/logar`                 | Realiza login                          |
+| GET    | `/`                      | Página inicial (Dashboard, após login) |
+| GET    | `/sair`                  | Faz logout                             |
+| GET    | `/cadastroUsuario`       | Tela de cadastro de novo usuário       |
+| POST   | `/cadastroUsuario`       | Cadastra um novo usuário               |
+| GET    | `/recuperarSenha`        | Tela para solicitar recuperação de senha|
+| POST   | `/enviarCodigo`          | Envia código de verificação por e-mail |
+| GET    | `/verificarCodigo`       | Tela para verificar código enviado     |
+| POST   | `/verificarCodigo`       | Valida o código digitado               |
+| POST   | `/novaSenha`             | Define uma nova senha                  |
+
+---
+
+### 🧪 Como testar os endpoints de login:
+
+- **Login**
+  - Acesse: `http://localhost:8080/login`
+  - Preencha o formulário com e-mail e senha válidos.
+  - Clique em "Entrar".
+
+- **Cadastro de novo usuário**
+  - Acesse: `http://localhost:8080/cadastroUsuario`
+  - Preencha os campos: nome, email e senha.
+  - Clique em "Cadastrar".
+
+- **Logout**
+  - Acesse: `http://localhost:8080/sair`
+  - Você será redirecionado para a tela de login.
+
+---
+
+### 🔒 Recuperação de senha - Fluxo completo
+
+1. **Solicitar recuperação**
+   - Acesse: `http://localhost:8080/recuperarSenha`
+   - Informe seu e-mail cadastrado e clique em "Enviar Código".
+
+2. **Verificar código**
+   - Acesse o e-mail, pegue o código enviado.
+   - Digite o código na tela ou acesse diretamente:  
+   `http://localhost:8080/verificarCodigo?email=SEU_EMAIL&codigo=SEU_CODIGO`
+
+3. **Definir nova senha**
+   - Após a validação do código, você será direcionado para a tela de nova senha.
+   - Informe a nova senha e confirme.
+
+---
+
+## 🗂️ Observações importantes
+
+- É necessário ter usuários cadastrados no sistema para testar o login.
+- O código de recuperação de senha é enviado via serviço de e-mail simulado na aplicação (`EmailService`).
+- As sessões de autenticação são controladas via cookies (`CookieService`).
+
+### 🧑‍💼 Endpoints de Membros (`/membros`)
+
+| Método | Endpoint                     | Descrição                              |
+|--------|-------------------------------|-----------------------------------------|
+| GET    | `/membros`                    | Lista todos os membros                  |
+| GET    | `/membros/novo`               | Abre o formulário de cadastro           |
+| POST   | `/membros/salvar`             | Salva um novo membro                    |
+| GET    | `/membros/editar/{id}`        | Abre o formulário para editar um membro |
+| GET    | `/membros/excluir/{id}`       | Exclui um membro pelo ID                |
+
+**🧪 Como testar:**
+
+- **Listar membros**
+  - Acesse: `http://localhost:8080/membros`
+
+- **Cadastrar membro**
+  - Acesse: `http://localhost:8080/membros/novo` (formulário)
+  - Ou envie um POST para `/membros/salvar` com os campos:
+    - `nomeCompleto`
+    - `dataNascimento`
+    - `email`
+    - `cargo`
+    - `telefone`
+    - `genero`
+    - `dataIngresso`
+    - `habilidades`
+
+- **Editar membro**
+  - Acesse: `http://localhost:8080/membros/editar/{id}`
+
+- **Excluir membro**
+  - Acesse: `http://localhost:8080/membros/excluir/{id}`
+
+---
+
+### 📑 Endpoints de Orçamentos (`/orcamentos`)
+
+| Método | Endpoint                         | Descrição                                |
+|--------|-----------------------------------|--------------------------------------------|
+| GET    | `/orcamentos`                    | Lista todos os orçamentos                 |
+| GET    | `/orcamentos/novo`               | Abre o formulário de cadastro             |
+| POST   | `/orcamentos/salvar`             | Salva um novo orçamento                   |
+| GET    | `/orcamentos/editar/{id}`        | Abre o formulário para editar um orçamento|
+| GET    | `/orcamentos/excluir/{id}`       | Exclui um orçamento pelo ID               |
+
+**🧪 Como testar:**
+
+- **Listar orçamentos**
+  - Acesse: `http://localhost:8080/orcamentos`
+
+- **Cadastrar orçamento**
+  - Acesse: `http://localhost:8080/orcamentos/novo` (formulário)
+  - Ou envie um POST para `/orcamentos/salvar` com os campos:
+    - `numeroOrcamento`
+    - `descricao`
+    - `cliente`
+    - `responsavel`
+    - `valorEstimado`
+    - `custoPrevisto`
+    - `status` (EM_ANALISE, APROVADO, REPROVADO)
+
+- **Editar orçamento**
+  - Acesse: `http://localhost:8080/orcamentos/editar/{id}`
+
+- **Excluir orçamento**
+  - Acesse: `http://localhost:8080/orcamentos/excluir/{id}`
+
+---
+
+## 📦 Observações
+- O projeto roda localmente no endereço: `http://localhost:8080`.
+
+### 🧑‍💼 Endpoints de Membros (`/membros`)
+
+| Método | Endpoint                     | Descrição                              |
+|--------|-------------------------------|-----------------------------------------|
+| GET    | `/membros`                    | Lista todos os membros                  |
+| GET    | `/membros/novo`               | Abre o formulário de cadastro           |
+| POST   | `/membros/salvar`             | Salva um novo membro                    |
+| GET    | `/membros/editar/{id}`        | Abre o formulário para editar um membro |
+| GET    | `/membros/excluir/{id}`       | Exclui um membro pelo ID                |
+
+**🧪 Como testar:**
+
+- **Listar membros**
+  - Acesse: `http://localhost:8080/membros`
+
+- **Cadastrar membro**
+  - Acesse: `http://localhost:8080/membros/novo` (formulário no navegador)
+  - Ou envie um **POST** para `/membros/salvar` com os seguintes campos no **Body (x-www-form-urlencoded ou form-data)**:
+    - `nomeCompleto`
+    - `dataNascimento` (formato: `AAAA-MM-DD`)
+    - `email`
+    - `cargo`
+    - `telefone`
+    - `genero`
+    - `dataIngresso` (formato: `AAAA-MM-DD`)
+    - `habilidades`
+
+- **Editar membro**
+  - Acesse: `http://localhost:8080/membros/editar/{id}`
+  - Substitua `{id}` pelo ID do membro que deseja editar.
+
+- **Excluir membro**
+  - Acesse: `http://localhost:8080/membros/excluir/{id}`
+  - Substitua `{id}` pelo ID do membro que deseja excluir.
+
+---
+
+
 ## 📝 Licença
 Esté projeto é de uso acadêmico e é livre para estudo.
